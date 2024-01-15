@@ -1,7 +1,7 @@
 name: build_docker_image
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       docker_file_path:
         description: 'Path to Dockerfile'
