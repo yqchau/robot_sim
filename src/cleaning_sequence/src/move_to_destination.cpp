@@ -9,18 +9,12 @@ void moveTo(actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
   auto doneCb = [](const actionlib::SimpleClientGoalState &state,
                    const move_base_msgs::MoveBaseResultConstPtr &result) {
     ROS_INFO("Finished in state [%s]", state.toString().c_str());
-    // Process the result if needed
   };
-
   // Callback when the goal becomes active
   auto activeCb = []() { ROS_INFO("Goal just went active"); };
-
   // Callback for feedback during the execution of the goal
   auto feedbackCb =
-      [](const move_base_msgs::MoveBaseFeedbackConstPtr &feedback) {
-        // std::cout << "Feedback: " << feedback << "\n";
-        // ROS_INFO("Got Feedback of length %lu", feedback->sequence.size());
-      };
+        [](const move_base_msgs::MoveBaseFeedbackConstPtr &feedback) {};
 
   // Wait for the action server to come up
   ROS_INFO("Waiting for the action server to come up");
