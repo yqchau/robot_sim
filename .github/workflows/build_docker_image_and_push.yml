@@ -31,7 +31,7 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: robot_sim:${{ github.ref_name }}
-          cache-from: type=registry,ref=robot_sim:${{ github.ref_name }}-buildcache
-          cache-to: type=registry,ref=robot_sim:${{ github.ref_name }}-buildcache,mode=max
+          tags: yuanqichau/robot_sim:${{ github.ref_name }}
+          cache-from: type=registry,ref=yuanqichau/robot_sim:${{ github.ref_name }}-buildcache
+          cache-to: type=registry,ref=yuanqichau/robot_sim:${{ github.ref_name }}-buildcache,mode=max
             
