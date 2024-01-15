@@ -73,3 +73,7 @@ This is so that the robot's behavior can be modified in run-time without having 
     # Run cleaning_sequence
     roslaunch cleaning_sequence cleaning_sequence.launch
     ```
+  
+# CI/CD
+- Upon every push to the repo, a Clang formatter is used to automatically format and commit changes to enforce consistent coding styles.
+- A manual dispatch can be used to trigger build of the Dockerfile, and the image gets build and push to Dockerhub.
