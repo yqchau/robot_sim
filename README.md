@@ -65,11 +65,11 @@ This is so that the robot's behavior can be modified in run-time without having 
 3. Launching
     ```sh
     # Gazebo
-    roslaunch bringup.sh
+    roslaunch cleaning_sequence bringup.sh
 
     # Arm Planning & Base Navigation
-    roslaunch planning_and_navigation.launch
+    roslaunch cleaning_sequence planning_and_navigation.launch
     
     # Run cleaning_sequence
-    roslaunch cleaning_sequence.launch
+    roslaunch cleaning_sequence cleaning_sequence.launch
     ```
