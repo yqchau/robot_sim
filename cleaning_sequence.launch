@@ -1,0 +1,8 @@
+<launch>
+
+    <!-- Cleaning Sequence Manager -->
+    <node pkg="cleaning_sequence" type="cleaning_sequence" name="cleaning_sequence" output="screen">
+        <rosparam command="load" file="$(find cleaning_sequence)/config/cleaning_sequence.yaml" />
+    </node>
+
+</launch>

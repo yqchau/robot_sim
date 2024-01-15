@@ -1,0 +1,9 @@
+<launch>
+
+    <!-- Robot Arm Control -->
+    <include file="$(find robot_moveit_config)/launch/Omni_control.launch" />
+
+    <!-- Robot Base Navigation -->
+    <include file="$(find robot_navigation)/launch/husky.launch" />
+
+</launch>

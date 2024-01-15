@@ -1,0 +1,52 @@
+name: build_docker_image
+
+on:
+  workflow_call:
+    inputs:
+      docker_file_path:
+        description: 'Path to Dockerfile'
+        type: string
+        required: true
+      docker_image_name:
+        description: 'Docker Image Name'
+        type: string
+        required: true
+
+jobs:
+  build_docker_image:
+    runs-on: 
+      group: local
+    container:
+      image: ghcr.io/catthehacker/ubuntu:act-20.04
+
+    steps:
+      - name: 💀 Check Out Repository
+        uses: actions/checkout@v3
+      
+      - name: 😃 Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: yuanqichau
+          password: ${{ secrets.DOCKER_HUB_PAT }}
+      
+      - name: 😕 Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      
+      - name: 🐧 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Get Random Number
+        id: random_number_generator
+        run: |
+          echo "RANDOM_NUMBER=$(date +%s)" >> "$GITHUB_OUTPUT"
+          
+      - name: 🚀 Build and Push ROS Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: robot_sim:${{ github.ref_name }}
+          cache-from: type=registry,ref=robot_sim:${{ github.ref_name }}-buildcache
+          cache-to: type=registry,ref=robot_sim:${{ github.ref_name }}-buildcache,mode=max
+            

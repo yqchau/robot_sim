@@ -1,0 +1,26 @@
+move_base_goal:
+  x: 4
+  y: 3
+  yaw: 90 # in degrees
+
+# initial_end_effector_pose:
+#   position:
+#     x: 1.
+#     y: 0.
+#     z: 0.
+#   orientation:
+#     x: 0.
+#     y: 0.
+#     z: 0.
+#     w: 1.
+
+# final_end_effector_pose:
+#   position:
+#     x: 1.
+#     y: 0.
+#     z: 0.
+#   orientation:
+#     x: 0.
+#     y: 0.
+#     z: 0.
+#     w: 1.

@@ -1,0 +1,40 @@
+name: ROS Style Guide C++ Formatter
+
+on:
+  push:
+  
+jobs:
+  clang_format_and_commit:
+      runs-on: ubuntu-latest
+        
+      steps:
+      - name: 💀 Check Out Repository
+        uses: actions/checkout@v4.1.1
+        with:
+          ref: ${{ github.head_ref }}
+          
+      - name: 🏗 Get last commit commit_user info
+        id: commit_info
+        run: |
+          COMMIT_USER_NAME=$(git log -1 --pretty=format:'%an')
+          COMMIT_USER_EMAIL=$(git log -1 --pretty=format:'%ae')
+          COMMIT_MESSAGE=$(git log -1 --pretty=format:'%B')  # %B gives the full commit message
+          echo "::set-output name=commit_user_name::$COMMIT_USER_NAME"
+          echo "::set-output name=commit_user_email::$COMMIT_USER_EMAIL"
+          echo "::set-output name=commit_message::$COMMIT_MESSAGE"
+
+      - name: Install clang format
+        run: |
+          sudo apt update && sudo apt install clang-format -y
+          
+      - name: Run git-clang-format
+        run: |
+          find . -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" | xargs clang-format -i
+          
+      - name: 🤖 Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Automated Formatting"
+          commit_user_name: ${{ steps.commit_info.outputs.commit_user_name }}
+          commit_user_email: ${{ steps.commit_info.outputs.commit_user_email }}
+          branch: ${{ github.head_ref }}

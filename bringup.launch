@@ -1,0 +1,6 @@
+<launch>
+
+    <!-- Gazebo Simulator -->
+    <include file="$(find robot_gazebo)/launch/husky.launch" />
+    
+</launch>
