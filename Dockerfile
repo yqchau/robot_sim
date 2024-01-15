@@ -15,8 +15,9 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main"
     apt-get update && \
     apt-get install -y python3-catkin-tools python3-pip 
 
-RUN rosdep install --from-paths src --ignore-src -r -y \
-    && source /opt/ros/noetic/setup.bash \
-    && catkin config --install --cmake-args -DCMAKE_BUILD_TYPE=Release -DCATKIN_ENABLE_TESTING=False \
-    && catkin build -j $(($(nproc) - 2)) \
-    && find . -maxdepth 1 ! -name 'install' ! -name '.' -exec rm -rf {} +
+RUN bash -c '\
+    rosdep install --from-paths src --ignore-src -r -y && \
+    source /opt/ros/noetic/setup.bash && \
+    catkin config --install --cmake-args -DCMAKE_BUILD_TYPE=Release -DCATKIN_ENABLE_TESTING=False && \
+    catkin build -j $(($(nproc) - 2)) && \
+    find . -maxdepth 1 ! -name "install" ! -name "." -exec rm -rf {} +'
