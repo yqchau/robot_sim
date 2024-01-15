@@ -19,6 +19,7 @@ COPY ./ /robot_sim
 WORKDIR /robot_sim
 
 # Build Packages
+SHELL ["/bin/bash", "-c"] 
 RUN chmod +x ./docker/build_packages.sh && \
     ./docker/build_packages.sh
 
