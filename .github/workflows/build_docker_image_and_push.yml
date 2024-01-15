@@ -2,15 +2,6 @@ name: build_docker_image
 
 on:
   workflow_dispatch:
-    inputs:
-      docker_file_path:
-        description: 'Path to Dockerfile'
-        type: string
-        required: true
-      docker_image_name:
-        description: 'Docker Image Name'
-        type: string
-        required: true
 
 jobs:
   build_docker_image:
