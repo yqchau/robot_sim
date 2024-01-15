@@ -5,7 +5,7 @@ FROM ros:noetic-robot-focal
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ros-noetic-desktop=1.5.0-1*
 
-RUN apt-get install -y install ros-noetic-husky-* \
+RUN apt-get install -y ros-noetic-husky-* \
         && ros-noetic-ddynamic-reconfigure \
         && ros-noetic-imu-filter-madgwick \
         && ros-noetic-imu-transformer
