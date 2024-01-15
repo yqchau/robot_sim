@@ -14,8 +14,7 @@ on:
 
 jobs:
   build_docker_image:
-    runs-on: 
-      group: local
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/catthehacker/ubuntu:act-20.04
 
