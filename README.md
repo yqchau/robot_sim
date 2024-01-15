@@ -12,7 +12,7 @@ The entire cleaning sequence is then broken down into 5 steps:
 - Moving the Robot Arm to final pose of the toilet seat.
 - Opening of the Robot Arm's gripper.   
 
-The robot base navigation is based on [move_base](http://wiki.ros.org/move_base). The robot arm's planning and movement is based on [moveit](https://moveit.ros.org/).
+The robot base navigation is based on [move_base](http://wiki.ros.org/move_base), and localization is based on [amcl](http://wiki.ros.org/amcl) ; The robot arm's planning and movement is based on [moveit](https://moveit.ros.org/).
 
 ### Configuration
 In order to make this a more generalized sequence, the `cleaning_sequence` node takes in a configuration file shown below:
