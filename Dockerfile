@@ -1,14 +1,10 @@
 # Use the official ROS image as the base image
 FROM ros:noetic-robot-focal
 
-# Install ROS desktop packages
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ros-noetic-desktop=1.5.0-1*
-
-RUN apt-get install -y ros-noetic-husky-* \
-        && ros-noetic-ddynamic-reconfigure \
-        && ros-noetic-imu-filter-madgwick \
-        && ros-noetic-imu-transformer
+RUN apt-get update && apt-get install -y ros-noetic-husky-* \
+    && apt-get install -y ros-noetic-ddynamic-reconfigure \
+    && apt-get install -y ros-noetic-imu-filter-madgwick \
+    && apt-get install -y ros-noetic-imu-transformer
 
 # Install additional packages
 RUN apt-get install -y git wget jq nano
