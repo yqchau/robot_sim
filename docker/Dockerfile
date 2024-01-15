@@ -15,10 +15,12 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main"
     apt-get update && \
     apt-get install -y python3-catkin-tools python3-pip 
 
-# Build Packages
-RUN pwd && ls
-# RUN chmod +x ./docker/build_packages.sh && \
-#     ./docker/build_packages.sh
+COPY ./ /robot_sim
+WORKDIR /robot_sim
 
-# Keep only the install folder & repos.yml by excluding them
-# RUN find . -maxdepth 1 ! -name 'install' ! -name 'repos.yml' ! -name '.' -exec rm -rf {} +
+# Build Packages
+RUN chmod +x ./docker/build_packages.sh && \
+    ./docker/build_packages.sh
+
+# Keep only the install folder by excluding them
+RUN find . -maxdepth 1 ! -name 'install' ! -name 'repos.yml' ! -name '.' -exec rm -rf {} +
