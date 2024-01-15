@@ -14,7 +14,7 @@ void moveTo(actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
   auto activeCb = []() { ROS_INFO("Goal just went active"); };
   // Callback for feedback during the execution of the goal
   auto feedbackCb =
-        [](const move_base_msgs::MoveBaseFeedbackConstPtr &feedback) {};
+      [](const move_base_msgs::MoveBaseFeedbackConstPtr &feedback) {};
 
   // Wait for the action server to come up
   ROS_INFO("Waiting for the action server to come up");
