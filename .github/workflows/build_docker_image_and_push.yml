@@ -25,16 +25,11 @@ jobs:
       - name: 🐧 Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Get Random Number
-        id: random_number_generator
-        run: |
-          echo "RANDOM_NUMBER=$(date +%s)" >> "$GITHUB_OUTPUT"
-          
       - name: 🚀 Build and Push ROS Image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
+          file: ./docker/Dockerfile
           push: true
           tags: robot_sim:${{ github.ref_name }}
           cache-from: type=registry,ref=robot_sim:${{ github.ref_name }}-buildcache
